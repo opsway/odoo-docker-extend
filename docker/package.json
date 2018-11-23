@@ -1,0 +1,19 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.3.1",
+    "bootstrap": "4.1.1",
+    "bxslider": "^4.2.14",
+    "gulp-gzip": "1.4.0",
+    "gulp-replace": "0.5.4",
+    "jquery": "3.3.1",
+    "jquery-validation": "1.18.0",
+    "package.json": "^2.0.1",
+    "popper.js": "^1.14.3"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
+  }
+}

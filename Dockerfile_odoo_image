@@ -1,0 +1,25 @@
+FROM odoo:12.0
+
+USER root
+RUN pip3 install pytest-odoo phonenumbers xlrd
+
+RUN apt-get update && apt-get install -y mc nano gnupg
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+        && apt-get install -y nodejs
+
+COPY docker/package.json /mnt/dependencies/
+COPY docker/package-lock.json  /mnt/dependencies/
+COPY docker/gulpfile.js mnt/dependencies/
+RUN chown -R odoo /mnt/extra-addons \
+    && chown -R odoo /mnt/dependencies
+RUN cd /mnt/dependencies \
+    && npm install package.json \
+    && npm install gulp -g \
+    && npm install gulp-sass
+
+#COPY ./odoo.conf /etc/odoo/
+#RUN chown odoo /etc/odoo/odoo.conf
+
+# USER odoo
+#COPY ../addons /mnt/extra-addons
+
