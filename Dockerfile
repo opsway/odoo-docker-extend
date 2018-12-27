@@ -48,19 +48,16 @@ RUN chown odoo /etc/odoo/odoo.conf
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
-    && mkdir -p /mnt/dependencies \
+    && mkdir -p /mnt/dependencies
 
 # Add JS dependencies
 COPY docker/package.json /mnt/dependencies/
-COPY docker/package-lock.json  /mnt/dependencies/
-COPY docker/gulpfile.js mnt/dependencies/
 RUN chown -R odoo /mnt/extra-addons \
     && chown -R odoo /mnt/dependencies
 RUN cd /mnt/dependencies \
-    && npm install package.json \
-    && npm install gulp -g \
-    && npm install gulp-sass \
-    && npm install gulp
+    && npm install package.json
+RUN npm install gulp -g \
+    && npm install gulp-sass
 
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 

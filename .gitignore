@@ -73,8 +73,9 @@ venv.bak/
 #Pycharm
 .idea
 
-#Odoo 
-conf/
+#Odoo
+conf/variables.env
+conf/credentials.env
 
 #Server
 server_side/
