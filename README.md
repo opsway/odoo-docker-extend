@@ -39,5 +39,8 @@ It allows adding extra JS dependencies for more efficient website development
    
   - **/nginx** - Nginx configuration setup
     
-    
+### TODO:
+- Move dev env setup to dev brunch
+
+
 
