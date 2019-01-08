@@ -76,6 +76,7 @@ venv.bak/
 #Odoo
 conf/variables.env
 conf/credentials.env
+conf/host.env
 
 #Server
 server_side/
