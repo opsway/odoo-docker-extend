@@ -87,7 +87,7 @@ docker-compose.yml
 
 
 # Dependency directories
-node_modules
+docker/package-lock.json
 
 # Optional npm cache directory
 .npm
