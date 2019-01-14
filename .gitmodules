@@ -1,0 +1,4 @@
+[submodule "enterprise"]
+	path = enterprise-addons
+	url = git@github.com:odoo/enterprise.git
+	branch = 12.0

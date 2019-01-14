@@ -1,7 +1,7 @@
 version: '2'
 services:
   web:
-    image: lumirang_odoo_local
+    image: lumirang_odoo_enterprise_local
     build: .
     depends_on:
       - mydb

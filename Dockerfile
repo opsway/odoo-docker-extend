@@ -40,15 +40,18 @@ RUN set -x; \
         && apt-get -y install -f --no-install-recommends \
         && rm -rf /var/lib/apt/lists/* odoo.deb
 
+# Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
+RUN mkdir -p /mnt/extra-addons \
+    && mkdir -p /mnt/enterprise-addons \
+    && mkdir -p /mnt/dependencies
+
+# RUN git clone --depth 1 --branch 12.0 https://www.github.com/odoo/enterprise "/mnt/enterprise-addons"
+
 # Copy entrypoint script and Odoo configuration file
 RUN pip3 install num2words xlwt pytest-odoo phonenumbers xlrd
 COPY docker/entrypoint.sh /
 COPY conf/odoo.conf /etc/odoo/
 RUN chown odoo /etc/odoo/odoo.conf
-
-# Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
-RUN mkdir -p /mnt/extra-addons \
-    && mkdir -p /mnt/dependencies
 
 # Add JS dependencies
 COPY docker/package.json /mnt/dependencies/
