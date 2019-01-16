@@ -6,19 +6,18 @@ services:
     depends_on:
       - mydb
     ports:
-      - "8079:8069"
+      - "8069:8069"
     volumes:
-    - ./addons:/mnt/extra-addons
+    - ./marfa:/mnt/extra-addons
+    - ./enterprise:/mnt/enterprise
     - ./conf/odoo_local.conf:/etc/odoo/odoo.conf
     environment:
     - HOST=mydb
     - USER=odoo
     - PASSWORD=myodoo
-    env_file:
-      - ./conf/variables.env
   mydb:
     ports:
-    - "5433:5432"
+    - "5432:5432"
     image: postgres:10
     environment:
       - POSTGRES_USER=odoo

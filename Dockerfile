@@ -42,13 +42,11 @@ RUN set -x; \
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
-    && mkdir -p /mnt/enterprise-addons \
+    && mkdir -p /mnt/enterprise \
     && mkdir -p /mnt/dependencies
 
-# RUN git clone --depth 1 --branch 12.0 https://www.github.com/odoo/enterprise "/mnt/enterprise-addons"
-
 # Copy entrypoint script and Odoo configuration file
-RUN pip3 install num2words xlwt pytest-odoo phonenumbers xlrd
+RUN pip3 install num2words xlwt pytest-odoo phonenumbers xlrd ofxparse
 COPY docker/entrypoint.sh /
 COPY conf/odoo.conf /etc/odoo/
 RUN chown odoo /etc/odoo/odoo.conf
@@ -56,13 +54,10 @@ RUN chown odoo /etc/odoo/odoo.conf
 # Add JS dependencies
 COPY docker/package.json /mnt/dependencies/
 RUN chown -R odoo /mnt/extra-addons \
+    && chown -R odoo /mnt/enterprise \
     && chown -R odoo /mnt/dependencies
-RUN cd /mnt/dependencies \
-    && npm install package.json
-RUN npm install gulp -g \
-    && npm install gulp-sass
 
-VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
+VOLUME ["/var/lib/odoo", "/mnt/extra-addons", "/mnt/enterprise"]
 
 # Expose Odoo services
 EXPOSE 8069 8071

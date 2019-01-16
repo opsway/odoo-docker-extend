@@ -5,7 +5,9 @@ Ready for deployment and development odoo setup.
 Prerequisite for such deployment configuration is to have registered host domain and external PostgreSQL database.
 
 In order deploy:
-- configure your deployment by providing information in host.env, variables.env and credentails.env files.
+- configure your deployment by providing information in host.env, variables.env and credentials.env files.
+- clone `https://github.com/odoo/enterprise` repo to the root of the project. (.gitmodules already prepared)
+- make sure folders has correct write/read permission and owner is `odoo`
 - run `docker-compose up -d`
 
 Development setup relies on `docker-compose_local_build.yml`, which in its turn uses local database.
@@ -21,6 +23,8 @@ It allows adding extra JS dependencies for more efficient website development
  - **/addons** folder - contains extra addons for your Odoo instance.
   
     One can for this repo and add copy required module to this folder, or use git submodule functionality to add existing git repo.
+    
+ - **/enterprise** folder - contains modules form `https://github.com/odoo/enterprise` 
  
  - **/conf** folder - contains configuration files.
  
