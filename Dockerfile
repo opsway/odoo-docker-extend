@@ -42,7 +42,7 @@ RUN set -x; \
 
 # Copy entrypoint script and Odoo configuration file
 RUN pip3 install num2words xlwt pytest-odoo phonenumbers xlrd
-COPY docker/entrypoint.sh /
+COPY env/entrypoint.sh /
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
