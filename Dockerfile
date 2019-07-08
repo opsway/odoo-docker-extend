@@ -43,21 +43,19 @@ RUN set -x; \
 # Copy entrypoint script and Odoo configuration file
 RUN pip3 install num2words xlwt pytest-odoo phonenumbers xlrd
 COPY docker/entrypoint.sh /
-COPY conf/odoo.conf /etc/odoo/
-RUN chown odoo /etc/odoo/odoo.conf
 
 # Mount /var/lib/odoo to allow restoring filestore and /mnt/extra-addons for users addons
 RUN mkdir -p /mnt/extra-addons \
     && mkdir -p /mnt/dependencies
 
 # Add JS dependencies
-COPY docker/package.json /mnt/dependencies/
-RUN chown -R odoo /mnt/extra-addons \
-    && chown -R odoo /mnt/dependencies
-RUN cd /mnt/dependencies \
-    && npm install package.json
-RUN npm install gulp -g \
-    && npm install gulp-sass
+#COPY docker/package.json /mnt/dependencies/
+#RUN chown -R odoo /mnt/extra-addons \
+#    && chown -R odoo /mnt/dependencies
+#RUN cd /mnt/dependencies \
+#    && npm install package.json
+#RUN npm install gulp -g \
+#    && npm install gulp-sass
 
 VOLUME ["/var/lib/odoo", "/mnt/extra-addons"]
 

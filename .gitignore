@@ -64,7 +64,6 @@ docs/_build/
 # Environments
 .env
 .venv
-env/
 venv/
 ENV/
 env.bak/
