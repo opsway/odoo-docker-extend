@@ -1,12 +1,11 @@
 version: '2'
 services:
   web-worker:
-    image: web-worker
+    image: quay.io/opsway/odoo-web-worker
     ports:
       - 80:80
     volumes: 
       - /var/www/odoo-data/nginx-log:/var/log/nginx
-    build: ../../nginx
     depends_on:
       - odoo
   odoo:
